@@ -119,7 +119,7 @@ rstyle <- list(
   state_lab_size = 1.7,
   state_lab_col = "#563101"
 )
-#+ regional_map,warnings=FALSE,message=FALSE
+#+ regional_map,warning=FALSE,message=FALSE
 regional_map <- ggplot() +
   geom_sf(data = st_crop(us_states, regional_box),
           fill = cstyle$land_col,
@@ -161,7 +161,7 @@ colnames(area_hill) <- c("lon", "lat", "hillshade")
 #' 
 #' ## ROI map (basemap)
 astyle <- list(water_col = "lightblue2", state_lab_size = 4, state_border_width = 0.6)
-#+ area_map,warnings=FALSE,message=FALSE
+#+ area_map,warning=FALSE,message=FALSE
 area_map <- ggplot() +
   geom_raster(data = area_hill, aes(x = lon, y = lat, fill = hillshade), interpolate = TRUE) +
   geom_sf(data = st_crop(us_states, area_box), color = cstyle$border_col, fill = "transparent",

@@ -195,8 +195,6 @@ regional_map <- ggplot() +
         panel.border = element_rect(color = "gray30", fill = NA, linewidth = 0.5))
 ```
 
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-
 Data for local map of western Montana
 
 ``` r
@@ -297,13 +295,6 @@ area_map <- ggplot() +
   theme(panel.background = element_rect(fill = "aliceblue"),
         panel.border = element_rect(color = "gray30", fill = NA, linewidth = 0.5))
 ```
-
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
 
 ## Composite Map (Fig. 1)
 
