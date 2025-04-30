@@ -27,6 +27,9 @@ if (any(!packages_installed)) {
 for (i in seq_along(packages_needed)) {
   library(packages_needed[i], character.only = TRUE)
 }
+#+ root_path
+root_path <- function(...) rprojroot::find_rstudio_root_file(...)
+#+ conflicts
 conflict_prefer("filter", "dplyr")
 conflict_prefer("select", "dplyr")
 conflict_prefer("map", "purrr")
@@ -63,7 +66,7 @@ conflict_prefer("lag", "dplyr")
 #' 
 #' 
 #' ## Read and prepare data
-insects <- read_delim(file.path(getwd(), "data/observations-510925.csv"),
+insects <- read_delim(root_path("data", "observations-510925.csv"),
                       show_col_types = FALSE) %>%
   mutate(year = lubridate::year(observed_on))
 mantis_obs <- insects %>%
@@ -197,8 +200,8 @@ fig1
 #' *M. religiosa* observations made by citizen scientists from 2015-2024 and downloaded from iNaturalist
 #' 
 #+ save_fig1,echo=FALSE
-ggsave(file.path(getwd(), "figs/fig1.pdf"), plot = fig1, device = cairo_pdf, height = 130, width = 84, units = "mm")
-ggsave(file.path(getwd(), "figs/fig1.eps"), plot = fig1, device = cairo_ps, dpi = 600, height = 130, width = 84, units = "mm")
+ggsave(root_path("figs", "fig1.pdf"), plot = fig1, device = cairo_pdf, height = 130, width = 84, units = "mm")
+ggsave(root_path("figs", "fig1.eps"), plot = fig1, device = cairo_ps, dpi = 600, height = 130, width = 84, units = "mm")
 #' 
 #' # Trends in Observations (Fig. 2)
 pop_trend <- insects %>%
@@ -230,5 +233,5 @@ fig2
 #' The color gradient corresponds to the observation rate (y-axis value) 
 #' 
 #+ save_fig2,echo=FALSE
-ggsave(file.path(getwd(), "figs/fig2.pdf"), plot = fig2, device = cairo_pdf, width = 84, height = 60, units = "mm")
-ggsave(file.path(getwd(), "figs/fig2.eps"), plot = fig2, device = cairo_ps, width = 84, height = 60, units = "mm")
+ggsave(root_path("figs", "fig2.pdf"), plot = fig2, device = cairo_pdf, width = 84, height = 60, units = "mm")
+ggsave(root_path("figs", "fig2.eps"), plot = fig2, device = cairo_ps, width = 84, height = 60, units = "mm")

@@ -34,6 +34,8 @@ if (any(!packages_installed)) {
 for (i in seq_along(packages_needed)) {
   library(packages_needed[i], character.only = TRUE)
 }
+#+ root_path
+root_path <- function(...) rprojroot::find_rstudio_root_file(...)
 #' 
 #' ## Graphics Style
 #+ graphics_style
@@ -43,7 +45,7 @@ source(file.path(getwd(), "supporting_files/styles.R"))
 #' Weather data were downloaded in successive batches as the project evolved
 #+ data_prep
 wx_files <- list.files(
-  path = file.path(getwd(), "data/weather_data"),
+  path = root_path("data", "weather_data"),
   pattern = "wmt_weather",
   full.names = TRUE
 )
@@ -51,27 +53,6 @@ wx <- wx_files %>%
   map(read_delim, show_col_types = FALSE) %>%
   bind_rows() %>%
   filter(DATE >= as.Date("1948-07-01")) %>% 
-
-# wx <-
-#   rbind(
-#     read_delim(
-#       file.path(getwd(), "weather_data/wmt_weather_1948-0101_2014-0630.txt"),
-#       show_col_types = FALSE
-#     ) %>%
-#       filter(DATE >= as.Date("1948-07-01")),
-#     read_delim(
-#       file.path(getwd(), "weather_data/wmt_weather_2014-1001_2016-0930.txt"),
-#       show_col_types = FALSE
-#     ),
-#     read_delim(
-#       file.path(getwd(), "weather_data/wmt_weather_2016-1001_2018-1231.txt"),
-#       show_col_types = FALSE
-#     ),
-#     read_delim(
-#       file.path(getwd(), "weather_data/wmt_weather_2019-0101_2024-1130.txt"),
-#       show_col_types = FALSE
-#     )
-#   ) %>%
   group_by(DATE) %>%
   summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), .groups = "drop") %>%
   mutate(

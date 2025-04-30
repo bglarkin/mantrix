@@ -19,10 +19,12 @@
 #' 
 #' # Packages
 #+ packages,message=FALSE,warning=FALSE
-packages_needed <- c("tidyverse", "knitr")
+packages_needed <- c("tidyverse", "knitr", "rprojroot")
 packages_installed <- packages_needed %in% rownames(installed.packages())
 if (any(!packages_installed)) install.packages(packages_needed[!packages_installed])
 for (pkg in packages_needed) library(pkg, character.only = TRUE)
+#+ root_path
+root_path <- function(...) rprojroot::find_rstudio_root_file(...)
 #' 
 #' # Mantid Abundance Data
 #' ## Published Densities from Delaware
@@ -76,13 +78,17 @@ kable(abun_params, format = "pandoc", caption = "Field-estimated abundance of ma
 #' estimates were visually interpreted from figures.
 #' 
 #+ pcis_data
-pcis_fh91 <- read_csv(file.path(getwd(), "data/pcis/pcis_fh91.csv"), show_col_types = FALSE) %>%
+pcis_fh91 <- read_csv(root_path("data", "pcis", "pcis_fh91.csv"), show_col_types = FALSE) %>%
   mutate(pcis = ((treatment - control) / (control * 4)) * 0.5)
-pcis_fh94 <- read_csv(file.path(getwd(), "data/pcis/pcis_fh94.csv"), show_col_types = FALSE) %>%
+
+pcis_fh94 <- read_csv(root_path("data", "pcis", "pcis_fh94.csv"), show_col_types = FALSE) %>%
   mutate(pcis = ((treatment - control) / (control * 9.5)) * 0.5)
-pcis_mh97 <- read_csv(file.path(getwd(), "data/pcis/pcis_mh97.csv"), show_col_types = FALSE)
+
+pcis_mh97 <- read_csv(root_path("data", "pcis", "pcis_mh97.csv"), show_col_types = FALSE)
+
 #+ pcis_output
 pcis <- bind_rows(pcis_fh91, pcis_fh94, pcis_mh97)
+
 #' 
 #' ## Summarized PCIS by Guild
 #+ pcis_summary

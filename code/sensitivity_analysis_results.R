@@ -24,6 +24,8 @@ packages_needed <- c("tidyverse", "colorspace", "knitr", "ggpubr", "Cairo")
 packages_installed <- packages_needed %in% rownames(installed.packages())
 if (any(!packages_installed)) install.packages(packages_needed[!packages_installed])
 for (pkg in packages_needed) library(pkg, character.only = TRUE)
+#+ root_path
+root_path <- function(...) rprojroot::find_rstudio_root_file(...)
 #' 
 #' ## Plot Style
 #+ theme
@@ -35,7 +37,7 @@ fig_dodgewidth <- 0.7
 #' ## Data Import and Formatting
 #+ import_data
 {
-  sens_path <- file.path(getwd(), "data/sensitivity_analysis_data")
+  sens_path <- root_path("data", "sensitivity_analysis_data")
   sens_files <- list.files(sens_path, full.names = TRUE, pattern = "matrix_export")
   sens_list <- map(sens_files, read_csv, show_col_types = FALSE)
   sens_scenarios <- regmatches(sens_files, regexpr("S\\d+", sens_files))
@@ -127,9 +129,9 @@ fig4 <- fig4_data %>%
 fig4
 
 #+ save_fig4,echo=FALSE
-ggsave(file.path(getwd(), "figs/fig4.pdf"), plot = fig4, device = cairo_pdf,
+ggsave(root_path("figs", "fig4.pdf"), plot = fig4, device = cairo_pdf,
        width = 174, height = 100, units = "mm")
-ggsave(file.path(getwd(), "figs/fig4.eps"), plot = fig4, device = cairo_ps,
+ggsave(root_path("figs", "fig4.eps"), plot = fig4, device = cairo_ps,
        width = 174, height = 100, units = "mm")
 
 #' 
@@ -207,7 +209,8 @@ fig5 <- ggarrange(
 fig5
 
 #+ save_fig5,echo=FALSE
-ggsave(file.path(getwd(), "figs/fig5.pdf"), plot = fig5, device = cairo_pdf,
+ggsave(root_path("figs", "fig5.pdf"), plot = fig5, device = cairo_pdf,
        width = 174, height = 100, units = "mm")
-ggsave(file.path(getwd(), "figs/fig5.eps"), plot = fig5, device = cairo_ps,
+ggsave(root_path("figs", "fig5.eps"), plot = fig5, device = cairo_ps,
        width = 174, height = 100, units = "mm")
+
