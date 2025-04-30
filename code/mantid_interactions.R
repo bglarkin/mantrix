@@ -40,21 +40,25 @@ abun1983 <- data.frame(
     density = avg * 10,
     source = "RathetHurd1983"
   )
-#' 
 abun2020 <- data.frame(
   year = c(1999, 2004, 2012, 2016, 2018),
   density = c(0.09, 0.13, 0.36, 0.17, 0.04) * 1000
 ) %>%
   mutate(source = "HurdEtAl2020")
-#'
-avg83 <- mean(abun1983$density)
-avg20 <- mean(abun2020$density)
-p15 <- quantile(c(abun1983$density, abun2020$density), 0.15)
-p85 <- quantile(c(abun1983$density, abun2020$density), 0.85)
-#'
+#+ abundance_summary
 bind_rows(abun1983 %>% select(source, density),
           abun2020 %>% select(source, density)) %>%
   kable(format = "pandoc")
+#+ abundance_parameters
+abun_params <- 
+  c(
+    avg_1983 = mean(abun1983$density),
+    avg_2020 = mean(abun2020$density),
+    quan = quantile(c(abun1983$density, abun2020$density), 0.15),
+    quan = quantile(c(abun1983$density, abun2020$density), 0.85)
+  ) %>% as.data.frame()
+colnames(abun_params) <- c("value")
+kable(abun_params, format = "pandoc")
 #' 
 #' # Per Capita Interaction Strengths (PCIS)
 #' ## Sources and Calculations
