@@ -47,6 +47,19 @@ for (script in scripts) {
     envir          = new.env(parent = globalenv())
   )
   
+  # --- MOVE the entire <script>_files/ folder into supplement/ ---
+  orig_dir <- file.path(proj_root, paste0(script_base, "_files"))
+  dest_dir <- file.path(proj_root, "supplement", paste0(script_base, "_files"))
+  
+  # remove any empty placeholder so rename can succeed
+  if (dir.exists(dest_dir))
+    unlink(dest_dir, recursive = TRUE)
+  
+  # now move it wholesale
+  if (dir.exists(orig_dir)) {
+    file.rename(orig_dir, dest_dir)
+  }
+  
   # fix up any straggling paths in the .md
   md_path  <- file.path(proj_root, output_md)
   md_lines <- readLines(md_path)
