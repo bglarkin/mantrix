@@ -65,7 +65,7 @@ fig_dodgewidth <- 0.7
   })
 }
 #' 
-#' ## Scenario Labels
+#' Scenario Labels
 #+ scenarios
 scenario_names <- data.frame(
   scenario = names(sens_list),
