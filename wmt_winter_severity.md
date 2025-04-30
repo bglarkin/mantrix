@@ -119,7 +119,7 @@ figS1 <-
 figS1
 ```
 
-<img src="/Users/blarkin/Documents/Git_repositories/mantrix/supplement/wmt_winter_severity_files/figure-gfm/figS1-1.png" style="display: block; margin: auto;" />
+<img src="supplement/wmt_winter_severity_files/figure-gfm/figS1-1.png" style="display: block; margin: auto;" />
 
 **Fig. S1** Number of winter cold snaps per year in western Montana from
 1948–49 to 2023–24. Cold snaps are defined as days when the daily

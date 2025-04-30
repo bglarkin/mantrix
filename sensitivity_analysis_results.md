@@ -138,7 +138,7 @@ fig4 <- fig4_data %>%
 fig4
 ```
 
-<img src="/Users/blarkin/Documents/Git_repositories/mantrix/supplement/sensitivity_analysis_results_files/figure-gfm/fig4-1.png" style="display: block; margin: auto;" />
+<img src="supplement/sensitivity_analysis_results_files/figure-gfm/fig4-1.png" style="display: block; margin: auto;" />
 
 # Figure 5 – Manipulating abiotic conditions and natural enemies:
 
@@ -225,4 +225,4 @@ fig5 <- ggarrange(
 fig5
 ```
 
-<img src="/Users/blarkin/Documents/Git_repositories/mantrix/supplement/sensitivity_analysis_results_files/figure-gfm/fig5-1.png" style="display: block; margin: auto;" />
+<img src="supplement/sensitivity_analysis_results_files/figure-gfm/fig5-1.png" style="display: block; margin: auto;" />

@@ -295,7 +295,7 @@ fig1 <- cowplot::ggdraw() +
 fig1
 ```
 
-<img src="/Users/blarkin/Documents/Git_repositories/mantrix/supplement/mantid_observations_mt_files/figure-gfm/fig1-1.png" style="display: block; margin: auto;" />
+<img src="supplement/mantid_observations_mt_files/figure-gfm/fig1-1.png" style="display: block; margin: auto;" />
 
 Fig. 1 Map displays the focal area in western Montana under invasion by
 *M. religiosa*. Inset maps show the focal area enclosed in a red box.
@@ -339,7 +339,7 @@ fig2 <- ggplot(pop_trend, aes(x = year, y = pct_mantis * 10)) +
 fig2
 ```
 
-<img src="/Users/blarkin/Documents/Git_repositories/mantrix/supplement/mantid_observations_mt_files/figure-gfm/fig2-1.png" style="display: block; margin: auto;" />
+<img src="supplement/mantid_observations_mt_files/figure-gfm/fig2-1.png" style="display: block; margin: auto;" />
 
 Fig. 2 Points represent observations of *Mantis religiosa* per 1000
 insect observations per year in the focal area shown on Fig. 1. Data for

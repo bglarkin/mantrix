@@ -8,6 +8,12 @@ lapply(packages_needed, library, character.only = TRUE)
 # find your project root
 proj_root <- rprojroot::find_rstudio_root_file()
 
+# treat proj_root as the base for all figure paths
+knitr::opts_knit$set(
+  root.dir = proj_root,
+  base.dir = proj_root
+)
+
 # list all .R scripts in /code
 scripts <- list.files(file.path(proj_root, "code"),
                       pattern = "\\.R$", full.names = TRUE)
@@ -44,12 +50,23 @@ for (script in scripts) {
   # fix up any straggling paths in the .md
   md_path  <- file.path(proj_root, output_md)
   md_lines <- readLines(md_path)
+  
+  # 1) strip out any absolute proj_root prefix
+  md_lines <- gsub(
+    pattern     = paste0(proj_root, "/"),
+    replacement = "",
+    x           = md_lines,
+    fixed       = TRUE
+  )
+  
+  # 2) rewrite the remainder into supplement/…
   md_lines <- gsub(
     pattern     = paste0(script_base, "_files/figure-gfm/"),
     replacement = fig_rel,
     x           = md_lines,
     fixed       = TRUE
   )
+  
   writeLines(md_lines, md_path)
 }
 
