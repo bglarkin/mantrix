@@ -3,20 +3,6 @@
 Beau Larkin
 Last updated: 30 April, 2025
 
-- [Description](#description)
-- [Packages and Libraries](#packages-and-libraries)
-- [Observation Data from
-  iNaturalist](#observation-data-from-inaturalist)
-  - [iNaturalist Search Query and
-    Fields](#inaturalist-search-query-and-fields)
-  - [Read and prepare data](#read-and-prepare-data)
-- [Maps of Observations](#maps-of-observations)
-  - [Continental map inset](#continental-map-inset)
-  - [Regional map inset](#regional-map-inset)
-  - [ROI map (basemap)](#roi-map-basemap)
-  - [Composite Map (Fig. 1)](#composite-map-fig-1)
-- [Trends in Observations (Fig. 2)](#trends-in-observations-fig-2)
-
 # Description
 
 This script compiles and maps *Mantis religiosa* observations from

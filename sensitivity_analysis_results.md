@@ -3,16 +3,6 @@ Sensitivity Analysis Results from MANTRIX
 Beau Larkin
 Last updated: 30 April, 2025
 
-- [Description](#description)
-- [Packages and Libraries](#packages-and-libraries)
-  - [Plot Style](#plot-style)
-- [Sensitivity Analysis Results](#sensitivity-analysis-results)
-  - [Data Import and Formatting](#data-import-and-formatting)
-- [Figure 4 – Manipulated mantid
-  abundance](#figure-4--manipulated-mantid-abundance)
-- [Figure 5 – Manipulating abiotic conditions and natural
-  enemies:](#figure-5--manipulating-abiotic-conditions-and-natural-enemies)
-
 # Description
 
 This script summarizes sensitivity analysis results for MANTRIX using

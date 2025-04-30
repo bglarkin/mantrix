@@ -1,46 +1,58 @@
 # Batch rendering of .R scripts to markdown reports (GitHub-friendly)
 packages_needed <- c("rmarkdown", "tools", "rprojroot", "knitr")
-packages_installed <- packages_needed %in% rownames(installed.packages())
-if (any(!packages_installed)) install.packages(packages_needed[!packages_installed])
-for (pkg in packages_needed) library(pkg, character.only = TRUE)
+if (any(!packages_needed %in% rownames(installed.packages()))) {
+  install.packages(setdiff(packages_needed, rownames(installed.packages())))
+}
+lapply(packages_needed, library, character.only = TRUE)
 
-# Path setup
-root_path <- function(...) rprojroot::find_rstudio_root_file(...)
-scripts <- list.files(root_path("code"), pattern = "\\.R$", full.names = TRUE)
-out_dir <- root_path()
+# find your project root
+proj_root <- rprojroot::find_rstudio_root_file()
 
-# Render each script
+# list all .R scripts in /code
+scripts <- list.files(file.path(proj_root, "code"),
+                      pattern = "\\.R$", full.names = TRUE)
+
 for (script in scripts) {
   script_base <- tools::file_path_sans_ext(basename(script))
-  output_name <- paste0(script_base, ".md")
-  fig_folder <- paste0("supplement/", script_base, "_files/")
+  output_md  <- paste0(script_base, ".md")
   
-  # Ensure output folder exists
-  dir.create(root_path(fig_folder), recursive = TRUE, showWarnings = FALSE)
+  # define the *relative* figure folder including the default "figure-gfm" subdir
+  fig_rel <- file.path("supplement",
+                       paste0(script_base, "_files"),
+                       "figure-gfm",
+                       "")
+  # make sure it exists under your repo root
+  dir.create(file.path(proj_root, fig_rel),
+             recursive = TRUE,
+             showWarnings = FALSE)
   
-  # Render in custom environment with controlled fig.path
-  render_env <- new.env(parent = globalenv())
-  knitr::opts_chunk$set(fig.path = fig_folder)
+  # set knitr so that knitting happens from proj_root
+  knitr::opts_knit$set(root.dir = proj_root)
+  # tell all chunks to dump their plots into our new folder
+  knitr::opts_chunk$set(fig.path = fig_rel)
   
+  # render with knit_root_dir as proj_root, and disable self_contained so images stay external
   rmarkdown::render(
-    input = script,
-    output_format = "github_document",
-    output_file = output_name,
-    output_dir = out_dir,
-    envir = render_env
+    input          = script,
+    output_format  = rmarkdown::github_document(),
+    output_file    = output_md,
+    output_dir     = proj_root,
+    knit_root_dir  = proj_root,
+    envir          = new.env(parent = globalenv())
   )
   
-  # Post-process markdown to fix image paths
-  md_path <- root_path(output_name)
+  # fix up any straggling paths in the .md
+  md_path  <- file.path(proj_root, output_md)
   md_lines <- readLines(md_path)
   md_lines <- gsub(
-    pattern = paste0(script_base, "_files/"),
-    replacement = fig_folder,
-    x = md_lines,
-    fixed = TRUE
+    pattern     = paste0(script_base, "_files/figure-gfm/"),
+    replacement = fig_rel,
+    x           = md_lines,
+    fixed       = TRUE
   )
   writeLines(md_lines, md_path)
 }
 
-# Clean up HTML junk
-file.remove(list.files(out_dir, pattern = "\\.html$", full.names = TRUE))
+# remove leftover HTML files
+htmls <- list.files(proj_root, "\\.html$", full.names = TRUE)
+if (length(htmls)) file.remove(htmls)
