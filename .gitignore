@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 figs/
+.Rproj
+.gitignore
