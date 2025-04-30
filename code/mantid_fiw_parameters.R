@@ -58,7 +58,7 @@ abun_params <-
     quan = quantile(c(abun1983$density, abun2020$density), 0.85)
   ) %>% as.data.frame()
 colnames(abun_params) <- c("value")
-kable(abun_params, format = "pandoc")
+kable(abun_params, format = "pandoc", caption = "Field-estimated abundance of mantids in Delaware;\naverages and quantiles")
 #' 
 #' # Per Capita Interaction Strengths (PCIS)
 #' ## Sources and Calculations
@@ -78,12 +78,10 @@ kable(abun_params, format = "pandoc")
 #+ pcis_data
 pcis_fh91 <- read_csv(file.path(getwd(), "data/pcis/pcis_fh91.csv"), show_col_types = FALSE) %>%
   mutate(pcis = ((treatment - control) / (control * 4)) * 0.5)
-
 pcis_fh94 <- read_csv(file.path(getwd(), "data/pcis/pcis_fh94.csv"), show_col_types = FALSE) %>%
   mutate(pcis = ((treatment - control) / (control * 9.5)) * 0.5)
-
 pcis_mh97 <- read_csv(file.path(getwd(), "data/pcis/pcis_mh97.csv"), show_col_types = FALSE)
-
+#+ pcis_output
 pcis <- bind_rows(pcis_fh91, pcis_fh94, pcis_mh97)
 #' 
 #' ## Summarized PCIS by Guild
@@ -93,3 +91,4 @@ pcis %>%
   summarize(pcis_sum = sum(pcis), .groups = "drop_last") %>%
   summarize(pcis_avg = round(mean(pcis_sum), 2), .groups = "drop") %>% 
   kable(format = "pandoc")
+
