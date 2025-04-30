@@ -1,7 +1,7 @@
 #' ---
 #' title: "Western Montana: Historical Extreme Cold Snaps"
 #' author: "Beau Larkin"
-#' date: "`r format(Sys.time(), '%d %B, %Y')`"
+#' date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
 #' output:
 #'   github_document:
 #'     toc: true
