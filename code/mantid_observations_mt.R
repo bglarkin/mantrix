@@ -29,7 +29,7 @@ for (i in seq_along(packages_needed)) {
 }
 #+ root_path
 root_path <- function(...) rprojroot::find_rstudio_root_file(...)
-#+ conflicts,warnings=FALSE,message=FALSE
+#+ conflicts,warning=FALSE,message=FALSE
 {
   conflict_prefer("filter", "dplyr")
   conflict_prefer("select", "dplyr")
@@ -84,7 +84,7 @@ us_states <- ne_states(country = c("United States of America", "Canada"), return
 lakes <- ne_download(scale = 10, type = "lakes", category = "physical", returnclass = "sf")
 na_bbox <- st_bbox(c(xmin = -130, ymin = 20, xmax = -70, ymax = 55), crs = st_crs(4326))
 #' 
-#' Plot styles for map components
+#' ### Plot styles for map components
 cstyle <- list(
   land_col = "#F9E3B9",
   border_col = "lemonchiffon4",
@@ -139,13 +139,13 @@ regional_map <- ggplot() +
   theme(panel.background = element_rect(fill = "aliceblue"),
         panel.border = element_rect(color = "gray30", fill = NA, linewidth = 0.5))
 #' 
-#' Data for local map of western Montana
+#' ### Data for local map of western Montana
 area_box <- st_bbox(c(xmin = -115.54, ymin = 45.84, xmax = -112.86, ymax = 48.64), crs = 4326)
 lakes_na <- ne_download(scale = 10, type = "lakes_north_america", category = "physical", returnclass = "sf")
 rivers <- ne_download(scale = 10, type = "rivers_lake_centerlines", category = "physical", returnclass = "sf")
 rivers_na <- ne_download(scale = 10, type = "rivers_north_america", category = "physical", returnclass = "sf")
 #' 
-#' DEM and hillshade background
+#' ### DEM and hillshade background
 area_sp <- as(raster::extent(area_box["xmin"], area_box["xmax"], area_box["ymin"], area_box["ymax"]),
               "SpatialPolygons")
 crs(area_sp) <- st_crs(4326)$proj4string

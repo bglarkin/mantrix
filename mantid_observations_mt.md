@@ -124,7 +124,7 @@ lakes <- ne_download(scale = 10, type = "lakes", category = "physical", returncl
 na_bbox <- st_bbox(c(xmin = -130, ymin = 20, xmax = -70, ymax = 55), crs = st_crs(4326))
 ```
 
-Plot styles for map components
+### Plot styles for map components
 
 ``` r
 cstyle <- list(
@@ -195,7 +195,7 @@ regional_map <- ggplot() +
         panel.border = element_rect(color = "gray30", fill = NA, linewidth = 0.5))
 ```
 
-Data for local map of western Montana
+### Data for local map of western Montana
 
 ``` r
 area_box <- st_bbox(c(xmin = -115.54, ymin = 45.84, xmax = -112.86, ymax = 48.64), crs = 4326)
@@ -233,7 +233,7 @@ rivers_na <- ne_download(scale = 10, type = "rivers_north_america", category = "
     ## Bounding box:  xmin: -166.3765 ymin: 7.897528 xmax: -53.9444 ymax: 82.63036
     ## Geodetic CRS:  WGS 84
 
-DEM and hillshade background
+### DEM and hillshade background
 
 ``` r
 area_sp <- as(raster::extent(area_box["xmin"], area_box["xmax"], area_box["ymin"], area_box["ymax"]),
@@ -309,7 +309,7 @@ fig1 <- cowplot::ggdraw() +
 fig1
 ```
 
-<img src="/Users/blarkin/Documents/Git_repositories/mantrix/mantid_observations_mt_files/figure-gfm/fig1-1.png" style="display: block; margin: auto;" />
+<img src="/Users/blarkin/Documents/Git_repositories/mantrix/supplement/mantid_observations_mt_files/figure-gfm/fig1-1.png" style="display: block; margin: auto;" />
 
 Fig. 1 Map displays the focal area in western Montana under invasion by
 *M. religiosa*. Inset maps show the focal area enclosed in a red box.
@@ -353,7 +353,7 @@ fig2 <- ggplot(pop_trend, aes(x = year, y = pct_mantis * 10)) +
 fig2
 ```
 
-<img src="/Users/blarkin/Documents/Git_repositories/mantrix/mantid_observations_mt_files/figure-gfm/fig2-1.png" style="display: block; margin: auto;" />
+<img src="/Users/blarkin/Documents/Git_repositories/mantrix/supplement/mantid_observations_mt_files/figure-gfm/fig2-1.png" style="display: block; margin: auto;" />
 
 Fig. 2 Points represent observations of *Mantis religiosa* per 1000
 insect observations per year in the focal area shown on Fig. 1. Data for
