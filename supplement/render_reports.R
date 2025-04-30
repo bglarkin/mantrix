@@ -1,7 +1,7 @@
 # Directory control for report rendering on GitHub
 # Batch rendering
 
-packages_needed <- c("rmarkdown", "tools", "rprojroot", "knitr")
+packages_needed <- c("rmarkdown", "tools", "rprojroot", "knitr", "fs")
 packages_installed <- packages_needed %in% rownames(installed.packages())
 if (any(!packages_installed)) install.packages(packages_needed[!packages_installed])
 for (pkg in packages_needed) library(pkg, character.only = TRUE)
@@ -12,7 +12,7 @@ root_path <- function(...) rprojroot::find_rstudio_root_file(...)
 # Scripts to render
 scripts <- list.files(root_path("code"), pattern = "\\.R$", full.names = TRUE)
 
-# Output path for reports
+# Output directory
 out_dir <- root_path()
 
 # Render each script
@@ -23,11 +23,10 @@ for (script in scripts) {
   fig_source <- root_path(fig_folder)
   fig_target <- root_path("supplement", fig_folder)
   
-  # Create an isolated environment for rendering
+  # Render with isolated environment and fig.path set
   render_env <- new.env(parent = globalenv())
-  knitr::opts_chunk$set(fig.path = fig_folder)
+  knitr::opts_chunk$set(fig.path = fig_folder)  # relative path so links work in .md
   
-  # Render the script
   rmarkdown::render(
     input = script,
     output_format = "github_document",
@@ -36,24 +35,9 @@ for (script in scripts) {
     envir = render_env
   )
   
-  # Move the _files folder into supplement
-  if (dir.exists(fig_source)) {
-    if (!dir.exists(root_path("supplement"))) dir.create(root_path("supplement"))
-    file.rename(from = fig_source, to = fig_target)
-  }
-  
-  # Adjust image paths in the .md file
-  md_path <- root_path(output_name)
-  if (file.exists(md_path)) {
-    md_text <- readLines(md_path)
-    md_text <- gsub(
-      pattern = paste0("(?<=\\()(", fig_folder, "/)"),
-      replacement = paste0("supplement/", fig_folder, "/"),
-      x = md_text,
-      perl = TRUE
-    )
-    writeLines(md_text, md_path)
-  }
+  # Move figure folder to supplement, replacing existing one if needed
+  if (dir.exists(fig_target)) unlink(fig_target, recursive = TRUE, force = TRUE)
+  if (dir.exists(fig_source)) file.rename(from = fig_source, to = fig_target)
 }
 
 # Clean up intermediate HTML files

@@ -8,7 +8,6 @@ Last updated: 30 April, 2025
   - [Plot Style](#plot-style)
 - [Sensitivity Analysis Results](#sensitivity-analysis-results)
   - [Data Import and Formatting](#data-import-and-formatting)
-  - [Scenario Labels](#scenario-labels)
 - [Figure 4 – Manipulated mantid
   abundance](#figure-4--manipulated-mantid-abundance)
 - [Figure 5 – Manipulating abiotic conditions and natural
@@ -80,7 +79,7 @@ fig_dodgewidth <- 0.7
 }
 ```
 
-## Scenario Labels
+Scenario Labels
 
 ``` r
 scenario_names <- data.frame(

@@ -13,13 +13,9 @@ Last updated: 30 April, 2025
 - [Maps of Observations](#maps-of-observations)
   - [Load and crop North America
     layers](#load-and-crop-north-america-layers)
-  - [Plot styles for map components](#plot-styles-for-map-components)
   - [Continental map inset](#continental-map-inset)
   - [Regional map inset](#regional-map-inset)
-  - [Local map of western Montana](#local-map-of-western-montana)
-  - [DEM and hillshade background](#dem-and-hillshade-background)
-  - [Local map styles and
-    construction](#local-map-styles-and-construction)
+  - [ROI map (basemap)](#roi-map-basemap)
   - [Composite Map (Fig. 1)](#composite-map-fig-1)
 - [Trends in Observations (Fig. 2)](#trends-in-observations-fig-2)
 
@@ -52,39 +48,14 @@ root_path <- function(...) rprojroot::find_rstudio_root_file(...)
 ```
 
 ``` r
-conflict_prefer("filter", "dplyr")
+{
+  conflict_prefer("filter", "dplyr")
+  conflict_prefer("select", "dplyr")
+  conflict_prefer("map", "purrr")
+  conflict_prefer("annotate", "ggpp")
+  conflict_prefer("lag", "dplyr")
+}
 ```
-
-    ## [conflicted] Removing existing preference.
-    ## [conflicted] Will prefer dplyr::filter over any other package.
-
-``` r
-conflict_prefer("select", "dplyr")
-```
-
-    ## [conflicted] Removing existing preference.
-    ## [conflicted] Will prefer dplyr::select over any other package.
-
-``` r
-conflict_prefer("map", "purrr")
-```
-
-    ## [conflicted] Removing existing preference.
-    ## [conflicted] Will prefer purrr::map over any other package.
-
-``` r
-conflict_prefer("annotate", "ggpp")
-```
-
-    ## [conflicted] Removing existing preference.
-    ## [conflicted] Will prefer ggpp::annotate over any other package.
-
-``` r
-conflict_prefer("lag", "dplyr")
-```
-
-    ## [conflicted] Removing existing preference.
-    ## [conflicted] Will prefer dplyr::lag over any other package.
 
 # Observation Data from iNaturalist
 
@@ -155,7 +126,7 @@ lakes <- ne_download(scale = 10, type = "lakes", category = "physical", returncl
 na_bbox <- st_bbox(c(xmin = -130, ymin = 20, xmax = -70, ymax = 55), crs = st_crs(4326))
 ```
 
-## Plot styles for map components
+Plot styles for map components
 
 ``` r
 cstyle <- list(
@@ -207,6 +178,9 @@ rstyle <- list(
   state_lab_size = 1.7,
   state_lab_col = "#563101"
 )
+```
+
+``` r
 regional_map <- ggplot() +
   geom_sf(data = st_crop(us_states, regional_box),
           fill = cstyle$land_col,
@@ -227,11 +201,9 @@ regional_map <- ggplot() +
         panel.border = element_rect(color = "gray30", fill = NA, linewidth = 0.5))
 ```
 
-    ## although coordinates are longitude/latitude, st_intersection assumes that they are planar
-
     ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
 
-## Local map of western Montana
+Data for local map of western Montana
 
 ``` r
 area_box <- st_bbox(c(xmin = -115.54, ymin = 45.84, xmax = -112.86, ymax = 48.64), crs = 4326)
@@ -269,7 +241,7 @@ rivers_na <- ne_download(scale = 10, type = "rivers_north_america", category = "
     ## Bounding box:  xmin: -166.3765 ymin: 7.897528 xmax: -53.9444 ymax: 82.63036
     ## Geodetic CRS:  WGS 84
 
-## DEM and hillshade background
+DEM and hillshade background
 
 ``` r
 area_sp <- as(raster::extent(area_box["xmin"], area_box["xmax"], area_box["ymin"], area_box["ymax"]),
@@ -293,10 +265,13 @@ area_hill <- hillShade(area_terrain$slope, area_terrain$aspect, angle = 70, dire
 colnames(area_hill) <- c("lon", "lat", "hillshade")
 ```
 
-## Local map styles and construction
+## ROI map (basemap)
 
 ``` r
 astyle <- list(water_col = "lightblue2", state_lab_size = 4, state_border_width = 0.6)
+```
+
+``` r
 area_map <- ggplot() +
   geom_raster(data = area_hill, aes(x = lon, y = lat, fill = hillshade), interpolate = TRUE) +
   geom_sf(data = st_crop(us_states, area_box), color = cstyle$border_col, fill = "transparent",
@@ -329,28 +304,11 @@ area_map <- ggplot() +
         panel.border = element_rect(color = "gray30", fill = NA, linewidth = 0.5))
 ```
 
-    ## although coordinates are longitude/latitude, st_intersection assumes that they are planar
-
     ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-
-    ## although coordinates are longitude/latitude, st_intersection assumes that they are planar
-
     ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-
-    ## although coordinates are longitude/latitude, st_intersection assumes that they are planar
-
     ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-
-    ## although coordinates are longitude/latitude, st_intersection assumes that they are planar
-
     ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-
-    ## although coordinates are longitude/latitude, st_intersection assumes that they are planar
-
     ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-
-    ## although coordinates are longitude/latitude, st_intersection assumes that they are planar
-
     ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
 
 ## Composite Map (Fig. 1)
