@@ -18,7 +18,7 @@
 packages_needed = c(
   "tidyverse", "conflicted", "sf", "rnaturalearth", "rnaturalearthdata",
   "rnaturalearthhires", "ggspatial", "maps", "ggpubr", "ggpmisc", "ggrepel",
-  "elevatr", "raster", "cowplot", "ggpp", "Cairo", "colorspace"
+  "elevatr", "raster", "cowplot", "ggpp", "Cairo", "colorspace", "rprojroot"
 )
 packages_installed = packages_needed %in% rownames(installed.packages())
 if (any(!packages_installed)) {

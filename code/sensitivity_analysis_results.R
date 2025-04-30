@@ -20,7 +20,7 @@
 #' 
 #' # Packages and Libraries
 #+ packages
-packages_needed <- c("tidyverse", "colorspace", "knitr", "ggpubr", "Cairo")
+packages_needed <- c("tidyverse", "colorspace", "knitr", "ggpubr", "Cairo", "rprojroot")
 packages_installed <- packages_needed %in% rownames(installed.packages())
 if (any(!packages_installed)) install.packages(packages_needed[!packages_installed])
 for (pkg in packages_needed) library(pkg, character.only = TRUE)

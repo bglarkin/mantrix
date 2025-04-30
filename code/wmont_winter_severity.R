@@ -23,7 +23,7 @@
 #' 
 #' # Packages and Libraries
 #+ packages,message=FALSE,warning=FALSE
-packages_needed = c("tidyverse", "lubridate")
+packages_needed = c("tidyverse", "lubridate", "rprojroot")
 packages_installed = packages_needed %in% rownames(installed.packages())
 
 if (any(!packages_installed)) {
