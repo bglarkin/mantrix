@@ -11,21 +11,23 @@ root_path <- function(...) rprojroot::find_rstudio_root_file(...)
 
 # Scripts to render
 scripts <- list.files(root_path("code"), pattern = "\\.R$", full.names = TRUE)
-
-# Output directory
 out_dir <- root_path()
 
 # Render each script
 for (script in scripts) {
   base_name <- tools::file_path_sans_ext(basename(script))
   output_name <- paste0(base_name, ".md")
-  fig_folder <- paste0(base_name, "_files")
-  fig_source <- root_path(fig_folder)
-  fig_target <- root_path("supplement", fig_folder)
+  fig_folder_name <- paste0(base_name, "_files")
+  fig_path_for_knitr <- file.path("supplement", fig_folder_name, fsep = "/")
+  fig_source <- root_path(fig_folder_name)
+  fig_target <- root_path("supplement", fig_folder_name)
   
-  # Render with isolated environment and fig.path set
+  # Remove old _files folder in supplement if it exists
+  if (dir.exists(fig_target)) unlink(fig_target, recursive = TRUE, force = TRUE)
+  
+  # Render with custom fig.path that points to supplement
   render_env <- new.env(parent = globalenv())
-  knitr::opts_chunk$set(fig.path = fig_folder)  # relative path so links work in .md
+  knitr::opts_chunk$set(fig.path = fig_path_for_knitr)
   
   rmarkdown::render(
     input = script,
@@ -35,8 +37,7 @@ for (script in scripts) {
     envir = render_env
   )
   
-  # Move figure folder to supplement, replacing existing one if needed
-  if (dir.exists(fig_target)) unlink(fig_target, recursive = TRUE, force = TRUE)
+  # Move generated _files folder to supplement
   if (dir.exists(fig_source)) file.rename(from = fig_source, to = fig_target)
 }
 

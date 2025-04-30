@@ -11,8 +11,6 @@ Last updated: 30 April, 2025
     Fields](#inaturalist-search-query-and-fields)
   - [Read and prepare data](#read-and-prepare-data)
 - [Maps of Observations](#maps-of-observations)
-  - [Load and crop North America
-    layers](#load-and-crop-north-america-layers)
   - [Continental map inset](#continental-map-inset)
   - [Regional map inset](#regional-map-inset)
   - [ROI map (basemap)](#roi-map-basemap)
@@ -101,7 +99,7 @@ mantis_obs <- insects %>%
 This section builds the base layers for the three-panel map
 (continental, regional, local).
 
-## Load and crop North America layers
+### Load and crop North America layers
 
 ``` r
 sf_use_s2(TRUE)
@@ -159,10 +157,6 @@ continent_map <- ggplot() +
   theme(panel.background = element_rect(fill = "aliceblue"),
         panel.border = element_rect(color = "gray30", fill = NA, linewidth = 0.5))
 ```
-
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
-    ## Warning: attribute variables are assumed to be spatially constant throughout all geometries
 
 ## Regional map inset
 

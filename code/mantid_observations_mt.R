@@ -77,7 +77,7 @@ mantis_obs <- insects %>%
 #' # Maps of Observations
 #' This section builds the base layers for the three-panel map (continental, regional, local).
 #' 
-#' ## Load and crop North America layers
+#' ### Load and crop North America layers
 sf_use_s2(TRUE)
 na_continent <- ne_countries(scale = 50, continent = "North America", returnclass = "sf")
 us_states <- ne_states(country = c("United States of America", "Canada"), returnclass = "sf")
@@ -93,7 +93,7 @@ cstyle <- list(
 )
 #' 
 #' ## Continental map inset
-#+ continent_map,warnings=FALSE,message=FALSE
+#+ continent_map,warning=FALSE,message=FALSE
 continent_map <- ggplot() +
   geom_sf(data = st_crop(na_continent, na_bbox),
           fill = cstyle$land_col,
