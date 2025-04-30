@@ -1,0 +1,12 @@
+taxon,control,treatment,guild,source
+Homoptera,154.2,74.2,herbivore,FH 91
+Araneida total,24.8,12.5,predator,FH 91
+Coleoptera,7,1.25,predator,FH 91
+Coleoptera,7,1.25,herbivore,FH 91
+Hymenoptera,3.4,1.75,predator,FH 91
+Hymenoptera,3.4,1.75,pollinator,FH 91
+Hemiptera,3.25,2,predator,FH 91
+Hemiptera,3.25,2,herbivore,FH 91
+Orthoptera,5.5,0,herbivore,FH 91
+Lepidoptera,3.5,0.7,pollinator,FH 91
+Diptera,1.8,0.2,herbivore,FH 91

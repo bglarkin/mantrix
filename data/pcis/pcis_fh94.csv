@@ -1,0 +1,10 @@
+taxon,control,treatment,guild,source
+Homoptera,170.7,105.1,herbivore,FH 94
+Diptera,23,29.5,herbivore,FH 94
+Thysanoptera,12.8,11.3,herbivore,FH 94
+Hemiptera,2.5,0.2,predator,FH 94
+Hemiptera,4.5,16.1,herbivore,FH 94
+Araneida,6.2,5.2,predator,FH 94
+Coleoptera,2.15,5.1,predator,FH 94
+Coleoptera,2.15,5.1,herbivore,FH 94
+Gryllidae,17.5,7.2,herbivore,FH 94

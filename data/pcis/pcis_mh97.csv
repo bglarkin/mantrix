@@ -1,0 +1,10 @@
+taxon,guild,pcis,source
+Aranea,predator,-0.0080,MH 97
+Coleoptera,predator,-0.0050,MH 97
+Coleoptera,herbivore,-0.0050,MH 97
+Diptera,herbivore,-0.0060,MH 97
+Hemiptera,herbivore,-0.0040,MH 97
+Hemiptera,predator,0.0220,MH 97
+Homoptera,herbivore,-0.0010,MH 97
+Hymenoptera,predator,-0.0050,MH 97
+Hymenoptera,pollinator,-0.0050,MH 97
