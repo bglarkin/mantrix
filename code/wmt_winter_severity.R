@@ -39,7 +39,7 @@ root_path <- function(...) rprojroot::find_rstudio_root_file(...)
 #' 
 #' ## Graphics Style
 #+ graphics_style
-source(file.path(getwd(), "supporting_files/styles.R"))
+source(root_path("supplement", "styles.R"))
 #' 
 #' # Data Preparation
 #' Weather data were downloaded in successive batches as the project evolved
@@ -110,7 +110,7 @@ ggsave(
   filename = "figS1.pdf",
   plot = figS1,
   device = cairo_pdf,
-  path = file.path(getwd(), "figs"),
+  path = root_path("figs"),
   width = 190,
   height = 80,
   units = "mm"

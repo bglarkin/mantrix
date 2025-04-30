@@ -1,41 +1,55 @@
-#' ---
-#' title: "Sensitivity Analysis Results from MANTRIX"
-#' author: "Beau Larkin"
-#' date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
-#' output:
-#'   github_document:
-#'     toc: true
-#'     toc_depth: 2
-#'     fig_width: 7
-#'     fig_height: 4
-#' ---
-#' 
-#' # Description
-#' This script summarizes sensitivity analysis results for MANTRIX using output from the
-#' [MPG Matrix tool](https://matrix.mpgranch.com). Figures 4 and 5 visualize predicted
-#' percent changes in mantid and trophic guild abundance under alternative scenarios, which
-#' considered mantids, their natural enemies, and abiotic conditions.
-#' Results are based on paired manipulations of *Mantis religiosa* abundance, 
-#' cold snap frequencies, and parasitoid wasp presence/absence.
-#' 
-#' # Packages and Libraries
-#+ packages
+Sensitivity Analysis Results from MANTRIX
+================
+Beau Larkin
+Last updated: 30 April, 2025
+
+- [Description](#description)
+- [Packages and Libraries](#packages-and-libraries)
+  - [Plot Style](#plot-style)
+- [Sensitivity Analysis Results](#sensitivity-analysis-results)
+  - [Data Import and Formatting](#data-import-and-formatting)
+  - [Scenario Labels](#scenario-labels)
+- [Figure 4 – Manipulated mantid
+  abundance](#figure-4--manipulated-mantid-abundance)
+- [Figure 5 – Manipulating abiotic conditions and natural
+  enemies:](#figure-5--manipulating-abiotic-conditions-and-natural-enemies)
+
+# Description
+
+This script summarizes sensitivity analysis results for MANTRIX using
+output from the [MPG Matrix tool](https://matrix.mpgranch.com). Figures
+4 and 5 visualize predicted percent changes in mantid and trophic guild
+abundance under alternative scenarios, which considered mantids, their
+natural enemies, and abiotic conditions. Results are based on paired
+manipulations of *Mantis religiosa* abundance, cold snap frequencies,
+and parasitoid wasp presence/absence.
+
+# Packages and Libraries
+
+``` r
 packages_needed <- c("tidyverse", "colorspace", "knitr", "ggpubr", "Cairo", "rprojroot")
 packages_installed <- packages_needed %in% rownames(installed.packages())
 if (any(!packages_installed)) install.packages(packages_needed[!packages_installed])
 for (pkg in packages_needed) library(pkg, character.only = TRUE)
-#+ root_path
+```
+
+``` r
 root_path <- function(...) rprojroot::find_rstudio_root_file(...)
-#' 
-#' ## Plot Style
-#+ theme
+```
+
+## Plot Style
+
+``` r
 source(root_path("supplement", "styles.R"))
 fig_pt_size <- 3
 fig_dodgewidth <- 0.7
-#' 
-#' # Sensitivity Analysis Results
-#' ## Data Import and Formatting
-#+ import_data
+```
+
+# Sensitivity Analysis Results
+
+## Data Import and Formatting
+
+``` r
 {
   sens_path <- root_path("data", "sensitivity_analysis_data")
   sens_files <- list.files(sens_path, full.names = TRUE, pattern = "matrix_export")
@@ -64,9 +78,11 @@ fig_dodgewidth <- 0.7
       arrange(name)
   })
 }
-#' 
-#' ## Scenario Labels
-#+ scenarios
+```
+
+## Scenario Labels
+
+``` r
 scenario_names <- data.frame(
   scenario = names(sens_list),
   scenario_labels = c(
@@ -82,9 +98,11 @@ scenario_names <- data.frame(
   )
 ) %>%
   mutate(scenario_labels = factor(scenario_labels, ordered = TRUE))
-#' 
-#' # Figure 4 – Manipulated mantid abundance
-#+ fig4_data
+```
+
+# Figure 4 – Manipulated mantid abundance
+
+``` r
 fig4_data <- bind_rows(
   list(S1 = sens_list$S1, S2 = sens_list$S2, S3 = sens_list$S3, S4 = sens_list$S4),
   .id = "scenario"
@@ -97,8 +115,9 @@ fig4_data <- bind_rows(
       .default = scenario
     )
   )
+```
 
-#+ fig4_plot
+``` r
 fig4_pal <- sequential_hcl(4, h = c(109, 252), c = c(100, 150, 7), l = c(86, 13), power = c(0.5, 0.9))
 fig4 <- fig4_data %>%
   filter(name %in% levels(factor(c(
@@ -124,20 +143,19 @@ fig4 <- fig4_data %>%
   theme_bgl_s +
   guides(fill = guide_legend(position = "inside")) +
   theme(legend.position.inside = c(0.9, 0.2))
+```
 
-#+ fig4,fig.align='center'
+``` r
 fig4
+```
 
-#+ save_fig4,echo=FALSE
-ggsave(root_path("figs", "fig4.pdf"), plot = fig4, device = cairo_pdf,
-       width = 174, height = 100, units = "mm")
-ggsave(root_path("figs", "fig4.eps"), plot = fig4, device = cairo_ps,
-       width = 174, height = 100, units = "mm")
+<img src="/Users/blarkin/Documents/Git_repositories/mantrix/sensitivity_analysis_results_files/figure-gfm/fig4-1.png" style="display: block; margin: auto;" />
 
-#' 
-#' # Figure 5 – Manipulating abiotic conditions and natural enemies: 
-#' cold snaps and parasitoid wasps. A two-panel plot is produced.
-#+ fig5_data
+# Figure 5 – Manipulating abiotic conditions and natural enemies:
+
+cold snaps and parasitoid wasps. A two-panel plot is produced.
+
+``` r
 fig5_data <- bind_rows(
   list(S5 = sens_list$S5, S6 = sens_list$S6, S7 = sens_list$S7, S8 = sens_list$S8, S9 = sens_list$S9),
   .id = "scenario"
@@ -153,9 +171,11 @@ fig5_data <- bind_rows(
 fig5_pal <- sequential_hcl(5, h = c(109, 252), c = c(100, 150, 7), l = c(86, 13), power = c(0.5, 0.9))[
   order(c(1, 3, 2, 4, 5))
 ]
+```
 
-#' 
-#' Panel 1: mantids
+Panel 1: mantids
+
+``` r
 fig5_mantis <- fig5_data %>%
   filter(name == "Mantids") %>%
   ggplot(aes(x = name, y = pct_change)) +
@@ -168,8 +188,11 @@ fig5_mantis <- fig5_data %>%
   scale_fill_manual(name = "Scenario", values = fig5_pal) +
   labs(x = NULL, y = "Abundance Change (Percent)") +
   theme_bgl_s
-#' 
-#' Panel 2: target nodes
+```
+
+Panel 2: target nodes
+
+``` r
 fig5_targets <- fig5_data %>%
   filter(name %in% c(
     "Invertebrate Predators", "Songbirds", "Small Mammals",
@@ -194,8 +217,11 @@ fig5_targets <- fig5_data %>%
   guides(fill = guide_legend(position = "inside", ncol = 2)) +
   theme_bgl_s +
   theme(legend.position.inside = c(0.72, 0.15), legend.title = element_text(hjust = 0.5))
-#' 
-#' Arrange panels
+```
+
+Arrange panels
+
+``` r
 fig5 <- ggarrange(
   fig5_mantis + theme(legend.position = "none"),
   fig5_targets + lims(y = c(-4.8, 4.4)) + theme(axis.title.y = element_blank()),
@@ -204,13 +230,10 @@ fig5 <- ggarrange(
   font.label = list(size = 12, face = "plain"),
   widths = c(0.25, 0.75), align = "h"
 )
+```
 
-#+ fig5,fig.align='center'
+``` r
 fig5
+```
 
-#+ save_fig5,echo=FALSE
-ggsave(root_path("figs", "fig5.pdf"), plot = fig5, device = cairo_pdf,
-       width = 174, height = 100, units = "mm")
-ggsave(root_path("figs", "fig5.eps"), plot = fig5, device = cairo_ps,
-       width = 174, height = 100, units = "mm")
-
+<img src="/Users/blarkin/Documents/Git_repositories/mantrix/sensitivity_analysis_results_files/figure-gfm/fig5-1.png" style="display: block; margin: auto;" />

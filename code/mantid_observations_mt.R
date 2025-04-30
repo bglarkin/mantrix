@@ -216,7 +216,7 @@ pop_trend <- insects %>%
          cold_snaps = c(rep(0, 7), 1, 2, 0))
 #' 
 #' Figure style (load theme arguments)
-source(root_path("supporting_files", "styles.R"))
+source(root_path("supplement", "styles.R"))
 #' 
 fig2 <- ggplot(pop_trend, aes(x = year, y = pct_mantis * 10)) +
   geom_line(color = "gray20", linetype = "dotted", linewidth = 0.4) +
