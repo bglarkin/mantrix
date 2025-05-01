@@ -127,6 +127,11 @@ fig4 <- ggplot(fig4_data, aes(x = name, y = pct_change)) +
 
 #+ fig4,fig.align='center'
 fig4
+#' **Fig. 4** Percentage abundance change for target nodes in Scenarios 1-4, each corresponding to 
+#' incrementally increased M. religiosa abundance based on the pre-invasion baseline FIW. 
+#' Points show median changes and vertical lines encompass 95% confidence intervals; 
+#' these are derived from a sensitivity analysis (10,000 permutations). 
+#' Point color indicates scenario; the color gradient reflects increasing mantid abundance 
 
 #+ save_fig4,echo=FALSE
 ggsave(root_path("figs", "fig4.pdf"), plot = fig4, device = cairo_pdf,
@@ -135,8 +140,8 @@ ggsave(root_path("figs", "fig4.eps"), plot = fig4, device = cairo_ps,
        width = 174, height = 100, units = "mm")
 
 #' 
-#' # Figure 5 – Manipulating abiotic conditions and natural enemies: 
-#' cold snaps and parasitoid wasps. A two-panel plot is produced.
+#' # Figure 5 – Manipulating abiotic conditions and natural enemies 
+#' Cold snaps and parasitoid wasps effects on mantids. A two-panel plot is produced.
 #+ fig5_data
 fig5_data <- bind_rows(
   list(S5 = sens_list$S5, S6 = sens_list$S6, S7 = sens_list$S7,
@@ -202,6 +207,11 @@ fig5 <- ggarrange(
 
 #+ fig5,fig.align='center'
 fig5
+#' **Fig. 5** Percentage abundance change for a M. religiosa and b target nodes in Scenarios 5-9. 
+#' Scenarios correspond to altered winter severity and presence/absence of parasitoid wasps and 
+#' are based on the post-invasion baseline FIW. Points show median changes and vertical lines encompass 95% confidence 
+#' intervals; these are derived from a sensitivity analysis (10,000 permutations). 
+#' Point color indicates scenario; the color gradient reflects increasing mantid abundance
 
 #+ save_fig5,echo=FALSE
 ggsave(root_path("figs", "fig5.pdf"), plot = fig5, device = cairo_pdf,

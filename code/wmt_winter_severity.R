@@ -105,7 +105,7 @@ figS1
 #' a threshold associated with significant *M. religiosa* egg mortality.
 #' Weather data are averaged from Missoula and Kalispell airports.
 #' 
-#+ save_fig,echo=FALSE
+#+ save_fig,echo=FALSE,fig.width=9
 ggsave(
   filename = "figS1.pdf",
   plot = figS1,
