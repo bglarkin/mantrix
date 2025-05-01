@@ -26,7 +26,7 @@ dampen impacts.
 Two baseline FIWs were created to test nine scenarios. Scenarios 1-4 test the effects of increased
 mantid abundance on the grassland community. Scenarios 5-9 test the effects of winter severity
 and parasitoid wasps on mantid populations. Link to the scenarios on the MPG Matrix below. 
-Reference the **How To Use** guide, accessible from the website header, and the 
+Reference the *How To Use* guide, accessible from the website header, and the 
 [FAQ sheet](https://matrix.mpgranch.com/#/faq) to duplicate and modify the FIWs. 
 
 ## Scenarios and FIW links
