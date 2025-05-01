@@ -52,4 +52,5 @@ varying winter severity and natural enemies of mantids; impacts on mantids and r
 for climate to affect mantid populations
 
 ![praying mantis BGL](https://static.inaturalist.org/photos/436270874/original.jpeg)
+Image © Beau Larkin and hosted on [iNaturalist.org](https://www.inaturalist.org/observations/244570042)
 
