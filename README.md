@@ -51,5 +51,5 @@ varying winter severity and natural enemies of mantids; impacts on mantids and r
 - Source and analysis of [weather data](wmt_winter_severity.md) used to examine the potential 
 for climate to affect mantid populations
 
-![praying mantis BGL](https://www.inaturalist.org/observations/244570042)
+![praying mantis BGL](https://static.inaturalist.org/photos/436270874/original.jpeg)
 
