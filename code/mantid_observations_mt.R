@@ -238,5 +238,6 @@ fig2
 #' The color gradient corresponds to the observation rate (y-axis value) 
 #' 
 #+ save_fig2,echo=FALSE
-ggsave(root_path("figs", "fig2.pdf"), plot = fig2, device = cairo_pdf, width = 84, height = 60, units = "mm")
-ggsave(root_path("figs", "fig2.eps"), plot = fig2, device = cairo_ps, width = 84, height = 60, units = "mm")
+ggsave(root_path("figs", "fig2.pdf"), plot = fig2, device = cairo_pdf, width = 84, height = 70, units = "mm")
+ggsave(root_path("figs", "fig2.eps"), plot = fig2, device = cairo_ps, width = 84, height = 70, units = "mm")
+
