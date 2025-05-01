@@ -6,8 +6,8 @@ Last updated: 01 May, 2025
 # Description
 
 This script compiles and maps *Mantis religiosa* observations from
-citizen scientists using [iNaturalist](www.inaturalist.org) in western
-Montana. It produces: 1. A multi-panel map (Fig. 1) of mantid
+citizen scientists using [iNaturalist](https://www.inaturalist.org) in
+western Montana. It produces: 1. A multi-panel map (Fig. 1) of mantid
 observations 2. A time series plot (Fig. 2) showing population trends
 over the last decade.
 

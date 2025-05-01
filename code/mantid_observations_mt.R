@@ -10,7 +10,7 @@
 #' 
 #' # Description
 #' This script compiles and maps *Mantis religiosa* observations from citizen scientists 
-#' using [iNaturalist](www.inaturalist.org) in western Montana. It produces:
+#' using [iNaturalist](https://www.inaturalist.org) in western Montana. It produces:
 #' 1. A multi-panel map (Fig. 1) of mantid observations
 #' 2. A time series plot (Fig. 2) showing population trends over the last decade.
 #' 
@@ -199,7 +199,7 @@ fig1 <- cowplot::ggdraw() +
   cowplot::draw_plot(area_map) +
   cowplot::draw_plot(regional_map, x = 0.03, y = 0.98, width = 0.33, height = 0.209, hjust = 0, vjust = 1) +
   cowplot::draw_plot(continent_map,  x = 0.97, y = 0.025, width = 0.35, height = 0.154, hjust = 1, vjust = 0)
-#+ fig1,fig.width=5,fig.height=7.74,fig.align='center'
+#+ fig1,fig.width=5,fig.height=7.74,fig.align="center"
 fig1
 #' Fig. 1 Map displays the focal area in western Montana under invasion by *M. religiosa*. 
 #' Inset maps show the focal area enclosed in a red box. Green points on the base map show locations of 
@@ -232,7 +232,7 @@ fig2 <- ggplot(pop_trend, aes(x = year, y = pct_mantis * 10)) +
   scale_x_continuous(name = NULL, breaks = seq(2015, max(pop_trend$year), by = 3)) +
   labs(y = expression(italic("M. religiosa") * " (per 1000 insect obs.)")) +
   theme_bgl_s
-#+ fig2,fig.width=4.96,fig.height=3.54,fig.align='center'
+#+ fig2,fig.width=4.96,fig.height=3.54,fig.align="center"
 fig2
 #' Fig. 2 Points represent observations of *Mantis religiosa* per 1000 insect observations per year 
 #' in the focal area shown on Fig. 1. Data for mantid and insect observations were downloaded from iNaturalist. 
