@@ -1,7 +1,17 @@
 Mantid Abundance and Interaction Strength Estimates
 ================
 Beau Larkin
-Last updated: 01 May, 2025
+Last updated: 12 May, 2025
+
+- [Description](#description)
+- [Packages](#packages)
+- [Mantid Abundance Data](#mantid-abundance-data)
+  - [Published Densities from
+    Delaware](#published-densities-from-delaware)
+- [Per Capita Interaction Strengths
+  (PCIS)](#per-capita-interaction-strengths-pcis)
+  - [Sources and Calculations](#sources-and-calculations)
+  - [Summarized PCIS by Guild](#summarized-pcis-by-guild)
 
 # Description
 

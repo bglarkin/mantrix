@@ -38,9 +38,10 @@ for (script in scripts) {
   knitr::opts_chunk$set(fig.path = fig_rel)
   
   # render with knit_root_dir as proj_root, and disable self_contained so images stay external
+  # default to YAML from each script for rendering
   rmarkdown::render(
     input          = script,
-    output_format  = rmarkdown::github_document(),
+    # output_format  = rmarkdown::github_document(),
     output_file    = output_md,
     output_dir     = proj_root,
     knit_root_dir  = proj_root,

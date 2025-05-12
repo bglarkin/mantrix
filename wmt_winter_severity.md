@@ -1,7 +1,14 @@
 Western Montana: Historical Extreme Cold Snaps
 ================
 Beau Larkin
-Last updated: 01 May, 2025
+Last updated: 12 May, 2025
+
+- [Description](#description)
+- [Packages and Libraries](#packages-and-libraries)
+  - [Graphics Style](#graphics-style)
+- [Data Preparation](#data-preparation)
+- [Cold Snap Analysis](#cold-snap-analysis)
+  - [Visualization of Cold Snaps](#visualization-of-cold-snaps)
 
 # Description
 
