@@ -36,7 +36,7 @@ Reference the *How To Use* guide, accessible from the website header, and the
 varying mantid abundance; impacts on native grassland community
 
 1. [Observed-Low](https://matrix.mpgranch.com/#/matrices/2b8a41/experiments/066a05)
-2. [Modeled Equilibrium](https://matrix.mpgranch.com/#/matrices/2b8a41/experiments/2610e8)
+2. [Predicted Equilibrium](https://matrix.mpgranch.com/#/matrices/2b8a41/experiments/2610e8)
 3. [Observed-Mid](https://matrix.mpgranch.com/#/matrices/2b8a41/experiments/1891c3)  
 4. [Observed-High](https://matrix.mpgranch.com/#/matrices/2b8a41/experiments/7cc356)
 
