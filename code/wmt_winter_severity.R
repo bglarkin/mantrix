@@ -106,6 +106,6 @@ figS1
 #' Weather data are averaged from Missoula and Kalispell airports.
 #' 
 #+ save_fig,echo=FALSE,fig.width=9
-ggsave(root_path("figs", "figS1.png"), plot = figS1, device = png, dpi = 600,
+ggsave(root_path("figs", "FigS1.png"), plot = figS1, device = png, dpi = 600,
        width = 190, height = 80, units = "mm"
 )

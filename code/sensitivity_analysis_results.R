@@ -134,7 +134,7 @@ fig4
 #' Point color indicates scenario; the color gradient reflects increasing mantid abundance 
 
 #+ save_fig4,echo=FALSE
-ggsave(root_path("figs", "fig4.svg"), plot = fig4, device = svg,
+ggsave(root_path("figs", "Fig4.svg"), plot = fig4, device = svg,
        width = 174, height = 100, units = "mm", bg = "transparent")
 
 #' 
@@ -212,5 +212,6 @@ fig5
 #' Point color indicates scenario; the color gradient reflects increasing mantid abundance
 
 #+ save_fig5,echo=FALSE
-ggsave(root_path("figs", "fig5.svg"), plot = fig5, device = svg,
+ggsave(root_path("figs", "Fig5.svg"), plot = fig5, device = svg,
        width = 174, height = 110, units = "mm", bg = "transparent")
+
