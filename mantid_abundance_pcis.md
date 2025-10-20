@@ -1,7 +1,7 @@
 Mantid Abundance and Interaction Strength Estimates
 ================
 Beau Larkin
-Last updated: 12 May, 2025
+Last updated: 20 October, 2025
 
 - [Description](#description)
 - [Packages](#packages)

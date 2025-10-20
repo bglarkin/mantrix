@@ -1,7 +1,7 @@
 Sensitivity Analysis Results from MANTRIX
 ================
 Beau Larkin
-Last updated: 12 May, 2025
+Last updated: 20 October, 2025
 
 - [Description](#description)
 - [Packages and Libraries](#packages-and-libraries)
@@ -98,7 +98,7 @@ Scenario Labels
 scenario_names <- data.frame(
   scenario = sens_scenarios,
   scenario_labels = c(
-    "Observed-Low", "Modeled Equilibrium", "Observed-Mid", "Observed-High",
+    "Observed-Low", "Predicted Equilibrium", "Observed-Mid", "Observed-High",
     "No Cold Snaps, No Wasps", "Four Cold Snaps, No Wasps",
     "No Cold Snaps, 6X Wasps", "Two Cold Snaps, 6X Wasps",
     "Four Cold Snaps, 6X Wasps"
@@ -140,7 +140,7 @@ fig4 <- ggplot(fig4_data, aes(x = name, y = pct_change)) +
   labs(x = NULL, y = "Abundance Change (Percent)") +
   theme_bgl_s +
   guides(fill = guide_legend(position = "inside")) +
-  theme(legend.position.inside = c(0.88, 0.21), legend.title = element_text(hjust = 0))
+  theme(legend.position.inside = c(0.88, 0.22), legend.title = element_text(hjust = 0))
 ```
 
 ``` r
@@ -217,7 +217,7 @@ fig5_targets <- fig5_data %>%
   labs(x = NULL, y = "Abundance Change (Percent)") +
   theme_bgl_s +
   guides(fill = guide_legend(position = "inside", ncol = 2)) +
-  theme(legend.position.inside = c(0.58, 0.17), legend.title = element_text(hjust = 1))
+  theme(legend.position.inside = c(0.58, 0.16), legend.title = element_text(hjust = 1))
 ```
 
 Arrange panels

@@ -1,7 +1,7 @@
 *Mantis religiosa* Observations in Western Montana
 ================
 Beau Larkin
-Last updated: 12 May, 2025
+Last updated: 20 October, 2025
 
 - [Description](#description)
 - [Packages and Libraries](#packages-and-libraries)
@@ -41,28 +41,6 @@ for (i in seq_along(packages_needed)) {
   library(packages_needed[i], character.only = TRUE)
 }
 ```
-
-    ## Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
-
-    ## Loading required package: ggpp
-
-    ## 
-    ## Attaching package: 'ggpp'
-
-    ## The following objects are masked from 'package:ggpubr':
-    ## 
-    ##     as_npc, as_npcx, as_npcy
-
-    ## The following object is masked from 'package:ggplot2':
-    ## 
-    ##     annotate
-
-    ## elevatr v0.99.0 NOTE: Version 0.99.0 of 'elevatr' uses 'sf' and 'terra'.  Use 
-    ## of the 'sp', 'raster', and underlying 'rgdal' packages by 'elevatr' is being 
-    ## deprecated; however, get_elev_raster continues to return a RasterLayer.  This 
-    ## will be dropped in future versions, so please plan accordingly.
-
-    ## Loading required package: sp
 
 ``` r
 root_path <- function(...) rprojroot::find_rstudio_root_file(...)
@@ -127,12 +105,17 @@ This section builds the base layers for the three-panel map
 
 ``` r
 sf_use_s2(TRUE)
+```
+
+    ## Spherical geometry (s2) switched on
+
+``` r
 na_continent <- ne_countries(scale = 50, continent = "North America", returnclass = "sf")
 us_states <- ne_states(country = c("United States of America", "Canada"), returnclass = "sf")
 lakes <- ne_download(scale = 10, type = "lakes", category = "physical", returnclass = "sf")
 ```
 
-    ## Reading layer `ne_10m_lakes' from data source `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpzlH1tb/ne_10m_lakes.shp' using driver `ESRI Shapefile'
+    ## Reading layer `ne_10m_lakes' from data source `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpgngHPc/ne_10m_lakes.shp' using driver `ESRI Shapefile'
     ## Simple feature collection with 1355 features and 41 fields
     ## Geometry type: MULTIPOLYGON
     ## Dimension:     XY
@@ -221,7 +204,8 @@ area_box <- st_bbox(c(xmin = -115.54, ymin = 45.84, xmax = -112.86, ymax = 48.64
 lakes_na <- ne_download(scale = 10, type = "lakes_north_america", category = "physical", returnclass = "sf")
 ```
 
-    ## Reading layer `ne_10m_lakes_north_america' from data source `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpzlH1tb/ne_10m_lakes_north_america.shp' using driver `ESRI Shapefile'
+    ## Reading layer `ne_10m_lakes_north_america' from data source 
+    ##   `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpgngHPc/ne_10m_lakes_north_america.shp' using driver `ESRI Shapefile'
     ## Simple feature collection with 1162 features and 36 fields
     ## Geometry type: MULTIPOLYGON
     ## Dimension:     XY
@@ -232,7 +216,8 @@ lakes_na <- ne_download(scale = 10, type = "lakes_north_america", category = "ph
 rivers <- ne_download(scale = 10, type = "rivers_lake_centerlines", category = "physical", returnclass = "sf")
 ```
 
-    ## Reading layer `ne_10m_rivers_lake_centerlines' from data source `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpzlH1tb/ne_10m_rivers_lake_centerlines.shp' using driver `ESRI Shapefile'
+    ## Reading layer `ne_10m_rivers_lake_centerlines' from data source 
+    ##   `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpgngHPc/ne_10m_rivers_lake_centerlines.shp' using driver `ESRI Shapefile'
     ## Simple feature collection with 1473 features and 38 fields
     ## Geometry type: MULTILINESTRING
     ## Dimension:     XY
@@ -243,7 +228,8 @@ rivers <- ne_download(scale = 10, type = "rivers_lake_centerlines", category = "
 rivers_na <- ne_download(scale = 10, type = "rivers_north_america", category = "physical", returnclass = "sf")
 ```
 
-    ## Reading layer `ne_10m_rivers_north_america' from data source `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpzlH1tb/ne_10m_rivers_north_america.shp' using driver `ESRI Shapefile'
+    ## Reading layer `ne_10m_rivers_north_america' from data source 
+    ##   `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpgngHPc/ne_10m_rivers_north_america.shp' using driver `ESRI Shapefile'
     ## Simple feature collection with 4897 features and 40 fields (with 19 geometries empty)
     ## Geometry type: MULTILINESTRING
     ## Dimension:     XY
