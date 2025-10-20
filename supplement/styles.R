@@ -35,6 +35,7 @@ theme_bgl_s =
     ),
     axis.text.y = element_text(
       size = 9,
+      color = "black",
       margin = unit(c(
         t = 0,
         r = 1,
@@ -44,10 +45,11 @@ theme_bgl_s =
     ),
     axis.ticks.length.x = unit(0, "mm"),
     axis.ticks.length.y = unit(-1.4, "mm"),
-    legend.text = element_text(size = 9),
+    axis.ticks.y = element_line(color = "black"),
+    legend.text = element_text(size = 9, color = "black"),
     panel.grid = element_blank(),
     # legend.title = element_blank(),
-    legend.title = element_text(size = 10),
+    legend.title = element_text(size = 10, color = "black"),
     legend.background = element_blank(),
     legend.box.background = element_blank()
   ) 

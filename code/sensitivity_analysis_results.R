@@ -83,7 +83,7 @@ sens_list <- map(sens_list, function(df) {
 scenario_names <- data.frame(
   scenario = sens_scenarios,
   scenario_labels = c(
-    "Observed-Low", "Modeled Equilibrium", "Observed-Mid", "Observed-High",
+    "Observed-Low", "Predicted Equilibrium", "Observed-Mid", "Observed-High",
     "No Cold Snaps, No Wasps", "Four Cold Snaps, No Wasps",
     "No Cold Snaps, 6X Wasps", "Two Cold Snaps, 6X Wasps",
     "Four Cold Snaps, 6X Wasps"
@@ -123,7 +123,7 @@ fig4 <- ggplot(fig4_data, aes(x = name, y = pct_change)) +
   labs(x = NULL, y = "Abundance Change (Percent)") +
   theme_bgl_s +
   guides(fill = guide_legend(position = "inside")) +
-  theme(legend.position.inside = c(0.88, 0.21), legend.title = element_text(hjust = 0))
+  theme(legend.position.inside = c(0.88, 0.22), legend.title = element_text(hjust = 0))
 
 #+ fig4,fig.align='center'
 fig4
@@ -134,10 +134,8 @@ fig4
 #' Point color indicates scenario; the color gradient reflects increasing mantid abundance 
 
 #+ save_fig4,echo=FALSE
-ggsave(root_path("figs", "fig4.pdf"), plot = fig4, device = cairo_pdf,
-       width = 174, height = 100, units = "mm")
-ggsave(root_path("figs", "fig4.eps"), plot = fig4, device = cairo_ps,
-       width = 174, height = 100, units = "mm")
+ggsave(root_path("figs", "fig4.svg"), plot = fig4, device = svg,
+       width = 174, height = 100, units = "mm", bg = "transparent")
 
 #' 
 #' # Figure 5 – Manipulating abiotic conditions and natural enemies 
@@ -192,7 +190,7 @@ fig5_targets <- fig5_data %>%
   labs(x = NULL, y = "Abundance Change (Percent)") +
   theme_bgl_s +
   guides(fill = guide_legend(position = "inside", ncol = 2)) +
-  theme(legend.position.inside = c(0.58, 0.17), legend.title = element_text(hjust = 1))
+  theme(legend.position.inside = c(0.58, 0.16), legend.title = element_text(hjust = 1))
 #' 
 #' Arrange panels
 fig5 <- ggarrange(
@@ -214,8 +212,5 @@ fig5
 #' Point color indicates scenario; the color gradient reflects increasing mantid abundance
 
 #+ save_fig5,echo=FALSE
-ggsave(root_path("figs", "fig5.pdf"), plot = fig5, device = cairo_pdf,
-       width = 174, height = 100, units = "mm")
-ggsave(root_path("figs", "fig5.eps"), plot = fig5, device = cairo_ps,
-       width = 174, height = 100, units = "mm")
-
+ggsave(root_path("figs", "fig5.svg"), plot = fig5, device = svg,
+       width = 174, height = 110, units = "mm", bg = "transparent")
