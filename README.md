@@ -22,6 +22,8 @@ mantid abundance and interaction strength estimates.
 but are severe at high mantid abundances. Periodic cold snaps and parasitoids may 
 dampen impacts.
 
+The raw scripts that generate these reports are available in a separate [folder](code).
+
 # Fuzzy Interaction Webs
 Two baseline FIWs were created to test nine scenarios. Scenarios 1-4 test the effects of increased
 mantid abundance on the grassland community. Scenarios 5-9 test the effects of winter severity
