@@ -1,7 +1,7 @@
 *Mantis religiosa* Observations in Western Montana
 ================
 Beau Larkin
-Last updated: 20 October, 2025
+Last updated: 27 October, 2025
 
 - [Description](#description)
 - [Packages and Libraries](#packages-and-libraries)
@@ -115,7 +115,7 @@ us_states <- ne_states(country = c("United States of America", "Canada"), return
 lakes <- ne_download(scale = 10, type = "lakes", category = "physical", returnclass = "sf")
 ```
 
-    ## Reading layer `ne_10m_lakes' from data source `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpGwPpRA/ne_10m_lakes.shp' using driver `ESRI Shapefile'
+    ## Reading layer `ne_10m_lakes' from data source `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/Rtmpom4B1B/ne_10m_lakes.shp' using driver `ESRI Shapefile'
     ## Simple feature collection with 1355 features and 41 fields
     ## Geometry type: MULTIPOLYGON
     ## Dimension:     XY
@@ -204,8 +204,7 @@ area_box <- st_bbox(c(xmin = -115.54, ymin = 45.84, xmax = -112.86, ymax = 48.64
 lakes_na <- ne_download(scale = 10, type = "lakes_north_america", category = "physical", returnclass = "sf")
 ```
 
-    ## Reading layer `ne_10m_lakes_north_america' from data source 
-    ##   `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpGwPpRA/ne_10m_lakes_north_america.shp' using driver `ESRI Shapefile'
+    ## Reading layer `ne_10m_lakes_north_america' from data source `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/Rtmpom4B1B/ne_10m_lakes_north_america.shp' using driver `ESRI Shapefile'
     ## Simple feature collection with 1162 features and 36 fields
     ## Geometry type: MULTIPOLYGON
     ## Dimension:     XY
@@ -217,7 +216,7 @@ rivers <- ne_download(scale = 10, type = "rivers_lake_centerlines", category = "
 ```
 
     ## Reading layer `ne_10m_rivers_lake_centerlines' from data source 
-    ##   `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpGwPpRA/ne_10m_rivers_lake_centerlines.shp' using driver `ESRI Shapefile'
+    ##   `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/Rtmpom4B1B/ne_10m_rivers_lake_centerlines.shp' using driver `ESRI Shapefile'
     ## Simple feature collection with 1473 features and 38 fields
     ## Geometry type: MULTILINESTRING
     ## Dimension:     XY
@@ -228,8 +227,7 @@ rivers <- ne_download(scale = 10, type = "rivers_lake_centerlines", category = "
 rivers_na <- ne_download(scale = 10, type = "rivers_north_america", category = "physical", returnclass = "sf")
 ```
 
-    ## Reading layer `ne_10m_rivers_north_america' from data source 
-    ##   `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/RtmpGwPpRA/ne_10m_rivers_north_america.shp' using driver `ESRI Shapefile'
+    ## Reading layer `ne_10m_rivers_north_america' from data source `/private/var/folders/f2/v4gkwmsn0nbd3fmypfh2wl740000gp/T/Rtmpom4B1B/ne_10m_rivers_north_america.shp' using driver `ESRI Shapefile'
     ## Simple feature collection with 4897 features and 40 fields (with 19 geometries empty)
     ## Geometry type: MULTILINESTRING
     ## Dimension:     XY

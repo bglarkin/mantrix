@@ -123,7 +123,7 @@ fig4 <- ggplot(fig4_data, aes(x = name, y = pct_change)) +
   labs(x = NULL, y = "Abundance Change (Percent)") +
   theme_bgl_s +
   guides(fill = guide_legend(position = "inside")) +
-  theme(legend.position.inside = c(0.88, 0.22), legend.title = element_text(hjust = 0))
+  theme(legend.position.inside = c(0.86, 0.30), legend.title = element_text(hjust = 0))
 
 #+ fig4,fig.align='center'
 fig4
@@ -135,7 +135,7 @@ fig4
 
 #+ save_fig4,echo=FALSE
 ggsave(root_path("figs", "Fig4.svg"), plot = fig4, device = svg,
-       width = 174, height = 100, units = "mm", bg = "transparent")
+       width = 174, height = 80, units = "mm", bg = "transparent")
 
 #' 
 #' # Figure 5 – Manipulating abiotic conditions and natural enemies 
@@ -186,18 +186,30 @@ fig5_targets <- fig5_data %>%
     position = position_dodge(width = fig_dodgewidth)
   ) +
   scale_x_discrete(labels = guild_labs) +
-  scale_fill_manual(name = "Scenarios 5−9:\nWinter Severity and Parasitoid Wasps", values = fig5_pal) +
+  scale_fill_manual(name = "Scenarios 5−9: Winter Severity\nand Parasitoid Wasps", values = fig5_pal) +
   labs(x = NULL, y = "Abundance Change (Percent)") +
   theme_bgl_s +
-  guides(fill = guide_legend(position = "inside", ncol = 2)) +
+  guides(fill = guide_legend(position = "inside", ncol = 1)) +
   theme(legend.position.inside = c(0.58, 0.16), legend.title = element_text(hjust = 1))
 #' 
 #' Arrange panels
 fig5 <- ggarrange(
   fig5_mantis + theme(legend.position = "none"),
-  fig5_targets + lims(y = c(-5, 4.4)) + theme(axis.title.y = element_blank()),
-  nrow = 1, ncol = 2, labels = c("a", "b"),
-  hjust = c(-6.2, -5), vjust = 2,
+  fig5_targets +
+    scale_y_continuous(
+      limits = c(-3.4, 5.4),
+      breaks = c(-3, -1.5, 0, 1.5, 3, 4.5),
+      labels = c("-3.0", "-1.5", "0", "1.5", "3.0", "4.5")
+    ) +
+    theme(
+      axis.title.y = element_blank(),
+      legend.position.inside = c(0.80, 0.80)
+    ),
+  nrow = 1,
+  ncol = 2,
+  labels = c("a", "b"),
+  hjust = c(-6.2, -5),
+  vjust = 2,
   font.label = list(size = 12, face = "plain"),
   widths = c(0.25, 0.75),
   align = "h"
