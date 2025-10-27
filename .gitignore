@@ -4,4 +4,4 @@
 .Ruserdata
 figs/
 .Rproj
-.RDataTmp/
+.RDataTmp/.DS_Store
