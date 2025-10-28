@@ -206,7 +206,6 @@ fig1
 #' *M. religiosa* observations made by citizen scientists from 2015-2024 and downloaded from iNaturalist
 #' 
 #+ save_fig1,echo=FALSE
-ggsave(root_path("figs", "Fig1.png"), plot = fig1, device = png, dpi = 600, height = 130, width = 84, units = "mm")
 ggsave(root_path("figs", "Fig1.eps"), plot = fig1, device = cairo_ps, dpi = 600, height = 130, width = 84, units = "mm")
 #' 
 #' # Trends in Observations (Fig. 2)
